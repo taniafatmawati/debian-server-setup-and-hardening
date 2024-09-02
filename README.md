@@ -220,6 +220,8 @@ Based on the penetration testing results, the following mitigation actions were 
 
 The project successfully achieved the goal of configuring a robust, secure, and monitored server environment. The enhancements in security posture and performance monitoring significantly improved the resilience and reliability of the server, making it well-prepared to handle potential security threats.
 
+---
+
 ## ⚠️ Additional Notes
 
 - Regular Assessments: Conduct regular vulnerability assessments and update the system and security tools to maintain a high level of security.
