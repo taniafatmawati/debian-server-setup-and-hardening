@@ -1,0 +1,11 @@
+# Nmap 7.94SVN scan initiated Sun Sep  1 22:04:28 2024 as: nmap -p- -oN nmap_after.txt 192.168.1.8
+Nmap scan report for debian-server (192.168.1.8)
+Host is up (0.0017s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+443/tcp open  https
+MAC Address: 08:00:27:1A:49:07 (Oracle VirtualBox virtual NIC)
+
+# Nmap done at Sun Sep  1 22:06:37 2024 -- 1 IP address (1 host up) scanned in 129.17 seconds
