@@ -74,6 +74,7 @@ This project focuses on setting up and hardening a Debian server, implementing s
 ### 2. Apply Server Hardening Techniques
 
 2.1. Set up UFW for firewall management:
+     
      ```bash
      sudo apt install ufw -y
      sudo ufw allow OpenSSH
@@ -174,7 +175,7 @@ Throughout the project, all key activities were meticulously documented, includi
 
 2. Penetration Testing:
    - Hydra output demonstrating the effectiveness of SSH key authentication in preventing unauthorized access (`hydra_output_before-txt.png` and `hydra_output_after-txt.png`).
-   - Logs and scan results confirming the reduction in unauthorized access attempts due to robust firewall configuration ([`unauthorized_access.txt`](https://drive.google.com/file/d/1qa8Ozu2SyQxFSVn-nVVYB-pBdon_MVBN/view?usp=sharing)).
+   - Logs and scan results confirming the reduction in unauthorized access attempts due to robust firewall configuration [`unauthorized_access.txt`](https://drive.google.com/file/d/1qa8Ozu2SyQxFSVn-nVVYB-pBdon_MVBN/view?usp=sharing).
    - Screenshots from the DoS attack simulation, showing the server's resilience (DoS_attack.png).
 
 3. Monitoring:
