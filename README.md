@@ -73,17 +73,37 @@ This project focuses on setting up and hardening a Debian server, implementing s
 
 ### 2. Apply Server Hardening Techniques
 
-2.1. Set up UFW for firewall management:
+2.1. Configure Rate Limiting in Apache:
+   - Edit Apache Configuration File: Open the virtual host configuration file (usually located at /etc/apache2/sites-available/000-default.conf or a similar file):
+     ```bash
+     sudo nano /etc/apache2/sites-available/000-default.conf
+     ```
+   - Add Rate Limiting Directive: Inside the <VirtualHost> block, add the following mod_ratelimit directives:
+     ```apache
+     <IfModule mod_ratelimit.c>
+        SetOutputFilter RATE_LIMIT
+        SetEnv rate-limit 400
+        SetEnv rate-initial-burst 800
+     </IfModule>
+     ```
+   - Restart Apache: Apply the changes by restarting Apache:
+     ```bash
+     sudo systemctl restart apache2
+     ```
+
+2.2. Set up UFW for firewall management:
      
      ```bash
      sudo apt install ufw -y
      sudo ufw allow OpenSSH
-     sudo ufw allow 80/tcp  # For HTTP
-     sudo ufw allow 443/tcp  # For HTTPS
+     sudo ufw limit 80/tcp  # For HTTP
+     sudo ufw limit 443/tcp  # For HTTPS
+     sudo ufw default deny incoming   
      sudo ufw enable
+     sudo ufw reload
      ```
-
-2.2. Configure SSH key-based authentication, and disable password-based login and root access:
+     
+2.3. Configure SSH key-based authentication, and disable password-based login and root access:
    - Generate SSH keys on your local machine:
      ```bash
      ssh-keygen -t rsa -b 4096
@@ -140,25 +160,51 @@ This project focuses on setting up and hardening a Debian server, implementing s
      ```
 
 3.2. Set up alerting and monitoring for key services and security events:
-
-
+   - Edit Configuration Files: Update `nagios.cfg`, `localhost.cfg`, `contacts.cfg`, and `commands.cfg` for monitoring services and alerting.
+   - Set Up Alerts: Define alerting rules and notifications in `contacts.cfg`.
+   - Restart Nagios: Apply changes with:
+     ```bash
+     sudo systemctl restart nagios
+     ```
 
 ### 4. Conduct Penetration Testing
 
-4.1. Simulate brute-force attacks using Hydra to test SSH key authentication:
-```bash
+4.1. Environment Setup:
 
-```
+   - Install Kali Linux:
+     1. Download from the [official website](https://www.kali.org/downloads/).
+     2. Follow the installation instructions.
+   - Update System:
+     ```bash
+     sudo apt update && sudo apt upgrade -y
+     ```
+   - Install Penetration Testing Tools:
+     ```bash
+     sudo apt install nmap hping3 hydra
+     ```
 
-5.2. Perform firewall bypass tests with Nmap to assess the firewall's effectiveness:
-```bash
+4.2. Simulate brute-force attacks using Hydra to test SSH key authentication:
 
-```
+     ```bash
+     hydra -l <username> -P <password_list> ssh://<TARGET_IP>
+     ```
 
-5.3. Execute DoS attacks using hping3 and analyze the server's response to extreme traffic conditions:
-```bash
+4.2. Perform firewall bypass tests with Nmap to assess the firewall's effectiveness:
 
-```
+   - Identify firewall rules:
+     ```bash
+     nmap -p- <TARGET_IP>
+     ```
+   - Attempt bypass:
+     ```bash
+     nmap -f -p <TARGET_PORT> <TARGET_IP>
+     ```
+
+4.3. Execute DoS attacks using hping3 and analyze the server's response to extreme traffic conditions:
+
+     ```bash
+     sudo hping3 --flood -p <PORT> <TARGET_IP>
+     ```
 
 ---
 
