@@ -245,7 +245,7 @@ Based on the penetration testing results, the following mitigation actions were 
 
 ---
 
-## 📊 Results and Documentation
+## 📊 Results
 
 - **Analysis Results**: The project demonstrated a significant enhancement in server security and performance. The improvements in monitoring and penetration testing contributed to a more resilient and secure server environment.
 
