@@ -1,4 +1,4 @@
-# 🔒 Debian Server Setup and Hardening with Nagios Monitoring and Penetration Testing
+# 🖥️ Debian Server Setup and Hardening with Nagios Monitoring and Penetration Testing
 
 This project focuses on setting up and hardening a Debian server, implementing security measures, monitoring server performance in real-time using Nagios, and conducting penetration tests to assess and enhance security.
 
